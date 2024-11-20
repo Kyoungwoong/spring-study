@@ -18,4 +18,8 @@ public class UserService {
         log.info("Service: findAll");
         return userRepository.findAll();
     }
+
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 }
