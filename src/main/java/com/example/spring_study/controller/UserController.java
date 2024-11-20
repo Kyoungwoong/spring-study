@@ -11,8 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.List;
+
+//@Controller
+@RestController
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -36,4 +40,15 @@ public class UserController {
         model.addAttribute("user", savedUser);
         return "userList"; // Return the name of the view
     }
+
+    /**
+     * Handles GET requests to retrieve the list of users as JSON.
+     *
+     * @return a list of users
+     */
+    @GetMapping("/json-users")
+    public List<User> getUsers() {
+        return userService.findAll();
+    }
+
 }
