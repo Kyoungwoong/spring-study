@@ -29,6 +29,12 @@ public class DataInit implements CommandLineRunner {
         repository.save(chatRoom2);
         repository.save(chatRoom3);
 
+        FilterData filterData1 = new FilterData("닭트넘");
+        FilterData filterData2 = new FilterData("맹구");
+
+        filterDataRepository.save(filterData1);
+        filterDataRepository.save(filterData2);
+
         log.info("데이터 초기화 완료");
     }
 }

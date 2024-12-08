@@ -60,4 +60,15 @@ public class ChatController {
 
         return ResponseEntity.ok(chatRooms);
     }
+
+    @PostMapping("/chat/filter")
+    @ResponseBody
+    public ResponseEntity<?> addFilterData(@RequestBody FilterDataRequest filterData) {
+        log.info("addFilterData: {}", filterData);
+
+        chatService.addFilteredWord(filterData.getFilterData());
+
+        return ResponseEntity.ok("add filter Data");
+    }
+
 }
