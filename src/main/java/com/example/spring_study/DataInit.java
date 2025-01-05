@@ -21,9 +21,9 @@ public class DataInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        ChatRoom chatRoom1 = new ChatRoom("testRoom1");
-        ChatRoom chatRoom2 = new ChatRoom("testRoom2");
-        ChatRoom chatRoom3 = new ChatRoom("testRoom3");
+        ChatRoom chatRoom1 = new ChatRoom("맨유 VS 토트넘");
+        ChatRoom chatRoom2 = new ChatRoom("아스날 VS 맨시티");
+        ChatRoom chatRoom3 = new ChatRoom("첼시 VS 리버풀");
 
         repository.save(chatRoom1);
         repository.save(chatRoom2);

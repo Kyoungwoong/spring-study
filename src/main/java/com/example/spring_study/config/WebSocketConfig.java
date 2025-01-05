@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
@@ -13,8 +14,10 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @EnableWebSocketMessageBroker
 @Configuration
-//@RequiredArgsConstructor // 이게 필요한가?
+@RequiredArgsConstructor // 이게 필요한가?
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+
+    private final StompHandler stompHandler;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -28,5 +31,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws-stomp") // SockJS 연결주소
                 .setAllowedOriginPatterns("*")
                 .withSockJS(); // 버전 낮은 브라우저에서도 적용 가능.
+    }
+
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.interceptors(stompHandler);
     }
 }
