@@ -18,9 +18,10 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id")
-    private ChatRoom room;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "room_id")
+//    private ChatRoom room;
+    private Long roomId;
 
     private String sender;
 
@@ -34,8 +35,8 @@ public class Chat {
     private LocalDateTime sendDate;
 
     @Builder
-    public Chat(ChatRoom room, String sender, String senderEmail, String message) {
-        this.room = room;
+    public Chat(Long roomId, String sender, String senderEmail, String message) {
+        this.roomId = roomId;
         this.sender = sender;
         this.senderEmail = senderEmail;
         this.message = message;
@@ -44,14 +45,14 @@ public class Chat {
 
     /**
      * 채팅 생성
-     * @param room 채팅 방
+     * @param roomId 채팅 방
      * @param sender 보낸이
      * @param message 내용
      * @return Chat Entity
      */
-    public static Chat createChat(ChatRoom room, String sender, String senderEmail, String message) {
+    public static Chat createChat(Long roomId, String sender, String senderEmail, String message) {
         return Chat.builder()
-                .room(room)
+                .roomId(roomId)
                 .sender(sender)
                 .senderEmail(senderEmail)
                 .message(message)

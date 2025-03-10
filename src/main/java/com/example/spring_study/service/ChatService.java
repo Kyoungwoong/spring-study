@@ -112,7 +112,7 @@ public class ChatService {
     public Chat createChat(Long roomId, String sender, String senderEmail, String message) {
         ChatRoom room = roomRepository.findById(roomId).orElseThrow();  // 방 찾기 -> 없는 방일 경우 여기서 예외처리
 
-        Chat chat = Chat.createChat(room, sender, senderEmail, filterValue(message));
+        Chat chat = Chat.createChat(roomId, sender, senderEmail, filterValue(message));
 
         return chatRepository.save(chat);
     }

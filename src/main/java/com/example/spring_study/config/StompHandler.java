@@ -22,19 +22,19 @@ public class StompHandler implements ChannelInterceptor {
 
         StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
         System.out.println("presend: " + 1);
-        if (StompCommand.CONNECT == accessor.getCommand()) {
-            String authorizationHeader = accessor.getFirstNativeHeader("Authorization");
-            System.out.println(2 + ": " + authorizationHeader);
-            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-                log.warn("No Authorization header or not Bearer type");
-                return null;
-            }
-
-            String token = authorizationHeader.split(" ")[1];
-            System.out.println(3 + ": " + token);
-        }
-
-        System.out.println(message.getPayload());
+//        if (StompCommand.CONNECT == accessor.getCommand()) {
+//            String authorizationHeader = accessor.getFirstNativeHeader("Authorization");
+//            System.out.println(2 + ": " + authorizationHeader);
+//            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+//                log.warn("No Authorization header or not Bearer type");
+//                return null;
+//            }
+//
+//            String token = authorizationHeader.split(" ")[1];
+//            System.out.println(3 + ": " + token);
+//        }
+//
+//        System.out.println(message.getPayload());
 
         return message;
     }
