@@ -1,16 +1,12 @@
 package com.example.spring_study.controller;
 
-import com.example.spring_study.domain.User;
-import com.example.spring_study.repository.UserRepository;
+import com.example.spring_study.domain.Member;
 import com.example.spring_study.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +45,7 @@ public class UserController {
     /**
      * Creates a new user from JSON data in the request body, then returns the userList view.
      *
-     * @param user the user data from the request body
+     * @param member the user data from the request body
      * @param model the model to hold attributes for the view
      * @return the name of the view to be rendered
      */
@@ -61,9 +57,9 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping("/users")
-    public String createUser(@RequestBody User user, Model model) {
-        User savedUser = userService.save(user);
-        model.addAttribute("user", savedUser);
+    public String createUser(@RequestBody Member member, Model model) {
+        Member savedMember = userService.save(member);
+        model.addAttribute("user", savedMember);
         return "userList";
     }
 
@@ -79,7 +75,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/json-users")
-    public List<User> getUsers() {
+    public List<Member> getUsers() {
         return userService.findAll();
     }
 }

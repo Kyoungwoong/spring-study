@@ -1,4 +1,4 @@
-package com.example.spring_study.config;
+package com.example.spring_study.common.async.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
